@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final appNameProvider = Provider((_) => "Flutter Riverpod Boilerplate");
+final appNameProvider = Provider<String>((_) => "Flutter Riverpod Boilerplate");
 
 void main() {
   runApp(
@@ -14,12 +13,12 @@ void main() {
 
 //
 
-class App extends HookWidget {
+class App extends HookConsumerWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final String appName = useProvider(appNameProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final String appName = ref.watch(appNameProvider);
 
     return MaterialApp(
       home: Scaffold(
